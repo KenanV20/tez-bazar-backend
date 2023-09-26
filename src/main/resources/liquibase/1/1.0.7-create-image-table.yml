@@ -1,0 +1,33 @@
+databaseChangeLog:
+  - changeSet:
+      id: Create images table
+      author: Kanan Verdiyev
+      changes:
+        - createTable:
+            tableName: images
+            columns:
+              - column:
+                  name: id
+                  type: serial
+                  constraints:
+                    autoIncrement: true
+                    primaryKey: true
+              - column:
+                  name: url
+                  type: varchar(255)
+              - column:
+                  name: sorting
+                  type: integer
+              - column:
+                  name: product_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_images_to_products
+                    references: products(id)
+                    onDelete: SET NULL
+              - column:
+                  name: created_at
+                  type: timestamp
+              - column:
+                  name: updated_at
+                  type: timestamp

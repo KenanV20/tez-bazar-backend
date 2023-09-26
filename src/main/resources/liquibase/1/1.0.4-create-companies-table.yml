@@ -1,0 +1,38 @@
+databaseChangeLog:
+  - changeSet:
+      id: Create companies table
+      author: Kanan Verdiyev
+      changes:
+        - createTable:
+            tableName: companies
+            columns:
+              - column:
+                  name: id
+                  type: serial
+                  constraints:
+                    autoIncrement: true
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: varchar(128)
+              - column:
+                  name: address
+                  type: varchar(128)
+              - column:
+                  name: company_type
+                  type: varchar(32)
+              - column:
+                  name: additional_information
+                  type: text
+              - column:
+                  name: image_link
+                  type: varchar(255)
+              - column:
+                  name: products_count
+                  type: integer
+              - column:
+                  name: created_at
+                  type: timestamp
+              - column:
+                  name: updated_at
+                  type: timestamp

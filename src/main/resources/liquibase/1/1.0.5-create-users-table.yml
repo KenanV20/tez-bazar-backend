@@ -1,0 +1,75 @@
+databaseChangeLog:
+  - changeSet:
+      id: Create users table
+      author: Kanan Verdiyev
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: serial
+                  constraints:
+                    autoIncrement: true
+                    primaryKey: true
+              - column:
+                  name: full_name
+                  type: varchar(64)
+              - column:
+                  name: city_id
+                  type: bigint
+                  constraints:
+                      foreignKeyName: fk_users_to_cities
+                      references: cities(id)
+                      onDelete: SET NULL
+              - column:
+                  name: email
+                  type: varchar(64)
+                  constraints:
+                    unique: true
+              - column:
+                  name: avatar_link
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: phone_number_one
+                  type: varchar(32)
+                  constraints:
+                    unique: true
+              - column:
+                  name: phone_number_two
+                  type: varchar(32)
+                  constraints:
+                    unique: true
+              - column:
+                  name: password
+                  type: varchar(255)
+              - column:
+                  name: count
+                  type: decimal
+                  defaultValueDate: 0
+              - column:
+                  name: gender
+                  type: varchar(16)
+              - column:
+                  name: company_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_users_to_companies
+                    references: companies(id)
+                    onDelete: SET NULL
+                    nullable: true
+                    unique: true
+              - column:
+                  name: is_active
+                  type: boolean
+                  defaultValueDate: true
+              - column:
+                  name: created_at
+                  type: timestamp
+              - column:
+                  name: updated_at
+                  type: timestamp
+
+

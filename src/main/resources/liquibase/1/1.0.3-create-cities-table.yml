@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: Create cities table
+      author: Kanan Verdiyev
+      changes:
+        - createTable:
+            tableName: cities
+            columns:
+              - column:
+                  name: id
+                  type: serial
+                  constraints:
+                    autoIncrement: true
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: varchar(64)
+              - column:
+                  name: created_at
+                  type: timestamp
+              - column:
+                  name: updated_at
+                  type: timestamp

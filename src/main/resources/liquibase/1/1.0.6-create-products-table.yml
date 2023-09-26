@@ -1,0 +1,55 @@
+databaseChangeLog:
+  - changeSet:
+      id: Create products table
+      author: Kanan Verdiyev
+      changes:
+        - createTable:
+            tableName: products
+            columns:
+              - column:
+                  name: id
+                  type: serial
+                  constraints:
+                    autoIncrement: true
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: varchar(128)
+              - column:
+                  name: description
+                  type: text
+              - column:
+                  name: sub_category_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_products_to_sub_categories
+                    references: sub_categories(id)
+                    onDelete: SET NULL
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_products_to_users
+                    references: users(id)
+                    onDelete: SET NULL
+              - column:
+                  name: type
+                  type: varchar(32)
+                  defaultValue: 'SIMPLE'
+              - column:
+                  name: active_status
+                  type: varchar(32)
+                  defaultValue: 'PENDING'
+              - column:
+                  name: price
+                  type: decimal
+              - column:
+                  name: views_count
+                  type: integer
+                  defaultValue: 0
+              - column:
+                  name: created_at
+                  type: timestamp
+              - column:
+                  name: updated_at
+                  type: timestamp

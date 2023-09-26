@@ -1,0 +1,31 @@
+databaseChangeLog:
+  - changeSet:
+      id: Create company phones table
+      author: Kanan Verdiyev
+      changes:
+        - createTable:
+            tableName: company_phones
+            columns:
+              - column:
+                  name: id
+                  type: serial
+                  constraints:
+                    autoIncrement: true
+                    primaryKey: true
+              - column:
+                  name: phone
+                  type: varchar(32)
+              - column:
+                  name: company_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_company_phones_to_companies
+                    references: companies(id)
+                    onDelete: CASCADE
+              - column:
+                  name: created_at
+                  type: timestamp
+              - column:
+                  name: updated_at
+                  type: timestamp
+

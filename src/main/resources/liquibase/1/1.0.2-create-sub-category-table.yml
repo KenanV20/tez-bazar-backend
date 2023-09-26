@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: Creat sub_category table
+      author: Kanan Verdiyev
+      changes:
+        - createTable:
+            tableName: sub_categories
+            columns:
+              - column:
+                  name: id
+                  type: serial
+                  constraints:
+                    autoIncrement: true
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: varchar(64)
+              - column:
+                  name: main_category_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_sub_categories_to_main_categories
+                    references: main_categories(id)
+                    onDelete: SET NULL
+              - column:
+                  name: created_at
+                  type: timestamp
+              - column:
+                  name: updated_at
+                  type: timestamp
